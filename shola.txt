@@ -1,0 +1,13 @@
+https://stratamine.com.ng/Shola/AUTHORS
+https://stratamine.com.ng/Shola/built-in.c
+https://stratamine.com.ng/Shola/execute.c
+https://stratamine.com.ng/Shola/execute_file.c
+https://stratamine.com.ng/Shola/finding_path.c
+https://stratamine.com.ng/Shola/generate_authos.sh
+https://stratamine.com.ng/Shola/getline.c
+https://stratamine.com.ng/Shola/history.c
+https://stratamine.com.ng/Shola/input_helpers.c
+https://stratamine.com.ng/Shola/man_1_simple_shell
+https://stratamine.com.ng/Shola/memory_management.c
+https://stratamine.com.ng/Shola/output.c
+https://stratamine.com.ng/Shola/parser.c
