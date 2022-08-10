@@ -1,6 +1,0 @@
-https://jagaban.ng/home/prompt.c
-https://jagaban.ng/home/read_line.c
-https://jagaban.ng/home/shell.c
-https://jagaban.ng/home/stat.c
-https://jagaban.ng/home/strstr.c
-https://jagaban.ng/home/utils.c
