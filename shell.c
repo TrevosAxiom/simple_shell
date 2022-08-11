@@ -1,90 +1,47 @@
 #include "shell.h"
 
 /**
- * main - Simple Shell (Hsh)
- * @argc: Argument Count
- * @argv:Argument Value
- * Return: Exit Value By Status
+ * main - A simple shell program
+ * @argc: The total arguments
+ * @argv: List of arguments passed to main
+ * @env: Argument list
+ *
+ * Return: 0
  */
+int main(int argc, char **argv, char **env)
+{
+char *str, *nocomments, *trimmed;
+int mode = 1;
+shell_var_t var = {0, 0, 0, NULL, NULL};
 
-int main(__attribute__((unused)) int argc, char **argv)
+var.pid = getpid();
+var.env = env;
+var.name = argv[0];
+while (mode)
 {
-char *input, **cmd;
-int counter = 0, statue = 1, st = 0;
-
-if (argv[1] != NULL)
-read_file(argv[1], argv);
-signal(SIGINT, signal_to_handel);
-while (statue)
+str = NULL;
+if (argc > 1)
 {
-counter++;
-if (isatty(STDIN_FILENO))
-prompt();
-input = _getline();
-if (input[0] == '\0')
-{
-continue;
-}
-history(input);
-cmd = parse_cmd(input);
-if (_strcmp(cmd[0], "exit") == 0)
-{
-exit_bul(cmd, input, argv, counter);
-}
-else if (check_builtin(cmd) == 0)
-{
-st = handle_builtin(cmd, st);
-free_all(cmd, input);
-continue;
+if (processFile(argv[1], &str) == 0)
+exit(0);
 }
 else
 {
-st = check_cmd(cmd, input, counter, argv);
-
-}
-free_all(cmd, input);
-}
-return (statue);
-}
-/**
- * check_builtin - check builtin
- *
- * @cmd:command to check
- * Return: 0 Succes -1 Fail
- */
-int check_builtin(char **cmd)
-{
-bul_t fun[] = {
-{"cd", NULL},
-{"help", NULL},
-{"echo", NULL},
-{"history", NULL},
-{NULL, NULL}
-};
-int i = 0;
-if (*cmd == NULL)
-{
-return (-1);
+if ((int)prompt(&str, &mode) == -1)
+exit(0);
 }
 
-while ((fun + i)->command)
-{
-if (_strcmp(cmd[0], (fun + i)->command) == 0)
-return (0);
-i++;
+trimmed = _trim(str);
+nocomments = removeComment(trimmed);
+free(str);
+free(trimmed);
+str = nocomments;
+if (processLogical(str, &var) == 1)
+continue;
+else if (processCmdSp(str, &var) == 1)
+continue;
+else
+processcmd(str, &var);
 }
-return (-1);
-}
-/**
- * creat_envi - Creat Array of Enviroment Variable
- * @envi: Array of Enviroment Variable
- * Return: Void
- */
-void creat_envi(char **envi)
-{
-int i;
-
-for (i = 0; environ[i]; i++)
-envi[i] = _strdup(environ[i]);
-envi[i] = NULL;
+return (var.code);
 }

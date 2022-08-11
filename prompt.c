@@ -1,30 +1,21 @@
 #include "shell.h"
 
 /**
- * prompt - Display Shell Prompt
+ * prompt - Prompts for input
+ * @str: The pointer to store user input
+ * @mode: The mode of the shell
  *
+ * Return: void
  */
-void prompt(void)
+size_t prompt(char **str, int *mode)
 {
-PRINTER("$ ");
-}
-/**
- * print_error - Display Error Based on Command and How Many Time Shell Looped
- * @input:User Input
- * @counter:Simple Shell Count Loop
- * @argv:Program Name
- * Return: Void
- */
-void print_error(char *input, int counter, char **argv)
-{
-char *er;
+size_t len = 0;
+size_t status;
 
-PRINTER(argv[0]);
-PRINTER(": ");
-er = _itoa(counter);
-PRINTER(er);
-free(er);
-PRINTER(": ");
-PRINTER(input);
-PRINTER(": not found\n");
+if (!isatty(STDIN_FILENO))
+*mode = 0;
+else
+write(1, "$ ", 2);
+status = getline(str, &len, stdin);
+return (status);
 }
