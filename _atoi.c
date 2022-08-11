@@ -37,7 +37,7 @@ steps = 1;
 }
 if (foundDigit)
 {
-n = (n * steps) + (int)(c - 48);
+n = (n *steps) +(int)(c - 48);
 steps = 10;
 }
 }
