@@ -5,7 +5,6 @@
  * @argc: The total arguments
  * @argv: List of arguments passed to main
  * @env: Argument list
- *
  * Return: 0
  */
 int main(int argc, char **argv, char **env)

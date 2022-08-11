@@ -9,6 +9,7 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <unistd.h>
+
 /**
  * struct shell_var - Struct shell_var
  * @code: The exit code of last command
@@ -17,6 +18,7 @@
  * @env: The environment varibles
  * @name: The name of this shell
  */
+
 typedef struct shell_var
 {
 int code;
@@ -41,11 +43,13 @@ int execCmd(char *sh, char *cmd, char **args);
 char **parser(char *str, char *delim);
 char *getCmdPath(char *cmd);
 size_t prompt(char **str, int *mode);
+
 /**
  * struct builtins - Struct builtins
  * @name: The name of this command
  * @cmd: The command function
  */
+
 typedef struct builtins
 {
 char *name;
@@ -75,4 +79,5 @@ int num_len(int num);
 char *replace_var(char *s, shell_var_t *svar);
 char *getVar(char *key, shell_var_t *svar);
 int processFile(char *filename, char **str);
+
 #endif
