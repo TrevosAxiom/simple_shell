@@ -1,3 +1,5 @@
+#include "shell.h"
+
 /**
  * _strcat - concatenates two strings.
  * @src: The first part o the string
